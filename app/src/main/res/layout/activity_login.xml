@@ -17,10 +17,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginLeft="-32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="-32dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginBottom="95dp"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/toeic_four_skills"
         tools:srcCompat="@drawable/toeic_four_skills" />
@@ -86,7 +86,7 @@
             android:text="Login"
             android:textColor="@android:color/background_dark"
             android:textSize="20sp"
-            android:onClick="Login"/>
+          />
         <TextView
             android:id="@+id/tv_signup"
             android:layout_width="0dp"
@@ -129,6 +129,27 @@
             android:buttonTint="@android:color/background_light"
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_alignStart="@+id/password"
+        android:layout_alignEnd="@+id/password"
+        android:layout_marginStart="-32dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="-30dp"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
 
     </LinearLayout>
 
