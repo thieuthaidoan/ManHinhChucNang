@@ -9,12 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.api.respose.SignupResponse;
-import com.example.api.respose.LoginResponse;
-import com.example.api.respose.APIServices;
-import com.example.api.respose.APIUtils;
-import com.example.api.respose.results.SignupResult;
 
+import com.example.api.api.APIServices;
+import com.example.api.api.APIUtils;
+import com.example.api.api.results.SignupResult;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,23 +64,23 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
     private void signup(String name, String pass, String mail) {
-        mAPIService = APIUtils.getAPIService();
-        mAPIService.SignUp(new Signup(name,pass,mail)).enqueue(new Callback<SignupResult>() {
-            @Override
-            public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
-                if (response.body().isSuccess()){
-                    Toast.makeText(SignUpActivity.this, response.body().getSignupResult().toString(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                    finish();
-                    progressDialog.dismiss();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<SignupResult> call, Throwable t) {
-                Toast.makeText(SignUpActivity.this, "SignUp false", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mAPIService = APIUtils.getAPIService();
+//        mAPIService.SignUp(new Signup(name,pass,mail)).enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
+//                if (response.body().isSuccess()){
+//                    Toast.makeText(SignUpActivity.this, response.body().getSignupResult().toString(), Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+//                    finish();
+//                    progressDialog.dismiss();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<SignupResult> call, Throwable t) {
+//                Toast.makeText(SignUpActivity.this, "SignUp false", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 }

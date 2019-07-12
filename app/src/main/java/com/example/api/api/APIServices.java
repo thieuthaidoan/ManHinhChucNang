@@ -1,7 +1,7 @@
-package com.example.api.respose;
+package com.example.api.api;
 
-import com.example.api.respose.results.LoginResult;
-import com.example.api.respose.results.SignupResult;
+import com.example.api.api.results.LoginResult;
+import com.example.api.api.results.SignupResult;
 import com.example.manhinhchucnang.Login;
 import com.example.manhinhchucnang.Signup;
 
@@ -18,7 +18,7 @@ import retrofit2.http.POST;
                 @Body Login login
         );
         @POST("register")
-        Call<SignupResult> SignUp(
+        Call<ResponseBody> SignUp(
                 @Body Signup signUp
         );
 

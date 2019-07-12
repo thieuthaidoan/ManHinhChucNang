@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLiteDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "CookbookDB";
-    private static final String TABLE_NAME = "CookBook";
+    private static final String DATABASE_NAME = "TestingDB";
+    private static final String TABLE_NAME = "Testing";
 
     public static final String KEY_TOKEN = "token";
 
