@@ -1,26 +1,36 @@
 package com.example.api.api;
 
+import com.example.api.api.response.LoginResponse;
 import com.example.api.api.results.LoginResult;
 import com.example.api.api.results.SignupResult;
-import com.example.manhinhchucnang.Login;
-import com.example.manhinhchucnang.Signup;
+import com.example.model.Login;
+import com.example.model.Signup;
+import com.example.model.User;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 
     public interface APIServices {
 
-        @POST("login")
-        Call<ResponseBody> login(
-                @Body Login login
-        );
+
         @POST("register")
-        Call<ResponseBody> SignUp(
+        Call<SignupResult> Signup(
                 @Body Signup signUp
         );
+        @GET("info")
+        Call<ResponseBody> getInfo(@Header("Authorization") String authToken);
+
+
+        @POST("login")
+        Call<LoginResult> login(
+                @Body Login logIn
+        );
+
 
 //
 //        @GET("users/info")

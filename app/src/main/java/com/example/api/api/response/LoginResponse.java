@@ -7,9 +7,9 @@ public class LoginResponse {
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("fullName")
-    @Expose
-    private String fullName;
+//    @SerializedName("fullName")
+//    @Expose
+//    private String fullName;
     @SerializedName("_id")
     @Expose
     private String id;
@@ -21,9 +21,9 @@ public class LoginResponse {
         return token;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
+//    public String getFullName() {
+//        return fullName;
+//    }
 
     public String getId() {
         return id;

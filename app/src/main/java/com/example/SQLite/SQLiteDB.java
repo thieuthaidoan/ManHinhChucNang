@@ -21,10 +21,10 @@ public class SQLiteDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CRATE_TABLE = "CREATE TABLE " + TABLE_NAME
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME
                 + " (" + KEY_TOKEN + " TEXT)";
 
-        sqLiteDatabase.execSQL(CRATE_TABLE);
+        sqLiteDatabase.execSQL(CREATE_TABLE);
 
         ContentValues values = new ContentValues();
         values.put(KEY_TOKEN, "");
@@ -44,7 +44,6 @@ public class SQLiteDB extends SQLiteOpenHelper {
         db.update(TABLE_NAME, values, null, null);
         db.close();
     }
-
 
     public String getToken(){
         SQLiteDatabase db = this.getReadableDatabase();

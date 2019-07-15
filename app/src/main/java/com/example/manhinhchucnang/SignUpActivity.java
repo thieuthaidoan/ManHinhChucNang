@@ -13,35 +13,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.api.api.APIServices;
 import com.example.api.api.APIUtils;
 import com.example.api.api.results.SignupResult;
+import com.example.model.Signup;
 
-import okhttp3.ResponseBody;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText fullName,tvEmail,passWord,rePassword;
+    EditText fullName, tvEmail, passWord, rePassword;
     private ProgressDialog progressDialog;
-
+    private APIServices mAPIServices;
     TextView tv;
-    private APIServices mAPIService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        tv = findViewById(R.id.tv_signup);
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(SignUpActivity.this, "dang ki thanh cong", Toast.LENGTH_SHORT).show();
-            }
-        });
         anhxa();
     }
 
-    public void anhxa() {
-
+    private void anhxa() {
         fullName = (EditText) findViewById(R.id.name_register);
         tvEmail = (EditText) findViewById(R.id.email_register);
         passWord = (EditText) findViewById(R.id.pass_register);
@@ -55,15 +47,38 @@ public class SignUpActivity extends AppCompatActivity {
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
-                signup(fullName.getText().toString(), passWord.getText().toString(),tvEmail.getText().toString());
+                signup(fullName.getText().toString(), passWord.getText().toString(), tvEmail.getText().toString());
 //                }else {
 //                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
 //                }
             }
         });
-    };
+    }
 
     private void signup(String name, String pass, String mail) {
+        mAPIServices = APIUtils.getAPIService();
+        mAPIServices.Signup(new Signup(name, pass, mail)).enqueue(new Callback<SignupResult>() {
+            @Override
+            public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
+                assert response.body() != null;
+                if (response.body().isSuccess()) {
+                    Toast.makeText(SignUpActivity.this, response.body().getSignupResult().toString(), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                    finish();
+                    progressDialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SignupResult> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "Sign Up false", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+//    private void signup(String name, String pass, String mail) {
 //        mAPIService = APIUtils.getAPIService();
 //        mAPIService.SignUp(new Signup(name,pass,mail)).enqueue(new Callback<ResponseBody>() {
 //            @Override
@@ -81,6 +96,6 @@ public class SignUpActivity extends AppCompatActivity {
 //                Toast.makeText(SignUpActivity.this, "SignUp false", Toast.LENGTH_SHORT).show();
 //            }
 //        });
-    }
+//    }
 
 }

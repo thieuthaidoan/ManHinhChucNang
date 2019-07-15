@@ -6,8 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import com.example.api.api.response.BaseResponse;
 import com.example.api.api.response.LoginResponse;
 
+
 public class LoginResult extends BaseResponse {
-    @SerializedName("results")
+    @SerializedName("response")
     @Expose
     public LoginResponse LoginResponse;
 

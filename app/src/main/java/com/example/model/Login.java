@@ -1,4 +1,4 @@
-package com.example.manhinhchucnang;
+package com.example.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,22 +8,22 @@ public class Login {
 
     @SerializedName("email")
     @Expose
-    private String email;
+    private String user;
     @SerializedName("password")
     @Expose
     private String password;
 
     public Login(String username, String pass) {
-        this.email = username;
+        this.user = username;
         this.password = pass;
     }
 
     public String getEmail() {
-        return email;
+        return user;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.user = email;
     }
 
     public String getPassword() {
