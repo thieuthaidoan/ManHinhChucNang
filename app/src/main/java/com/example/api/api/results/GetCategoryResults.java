@@ -11,9 +11,9 @@ import java.util.List;
     public class GetCategoryResults extends BaseResponse {
         @SerializedName("results")
         @Expose
-        public List<com.example.manhinhchucnang.Category> Category;
+        public List<com.example.model.Category> Category;
 
-        public List<com.example.manhinhchucnang.Category> getCategory() {
+        public List<com.example.model.Category> getCategory() {
             if (Category == null){
                 Category = new ArrayList<>();
             }

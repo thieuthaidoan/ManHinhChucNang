@@ -1,6 +1,7 @@
 package com.example.api.api;
 
 import com.example.api.api.response.LoginResponse;
+import com.example.api.api.results.GetCategoryResults;
 import com.example.api.api.results.LoginResult;
 import com.example.api.api.results.SignupResult;
 import com.example.model.Login;
@@ -31,6 +32,10 @@ import retrofit2.http.POST;
                 @Body Login logIn
         );
 
+        @GET("category/")
+        Call<GetCategoryResults> getCategories(
+                @Header("token") String token
+        );
 
 //
 //        @GET("users/info")

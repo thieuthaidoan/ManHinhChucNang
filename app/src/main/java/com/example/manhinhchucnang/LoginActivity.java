@@ -65,8 +65,6 @@ public class LoginActivity extends AppCompatActivity {
             }).start();
 
         });
-
-
         findViewById(R.id.tv_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

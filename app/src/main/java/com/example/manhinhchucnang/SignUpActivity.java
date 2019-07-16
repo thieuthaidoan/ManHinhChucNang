@@ -1,7 +1,10 @@
 package com.example.manhinhchucnang;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -41,21 +44,31 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btn_signup_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(passWord.getText().toString()==rePassword.getText().toString()){
+                if (passWord.getText().toString() == rePassword.getText().toString()) {
                 progressDialog = new ProgressDialog(SignUpActivity.this);
                 //  progressDialog.setTitle("Vui Lòng Chờ !");
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
                 signup(fullName.getText().toString(), passWord.getText().toString(), tvEmail.getText().toString());
-//                }else {
-//                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
-//                }
+                } else {
+                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
+    private boolean checkInternet() {
+        final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+        if (activeNetwork != null && activeNetwork.isConnected()) {
+            // notify user you are online
+            return true;
+        } else
+            return false;
+    }
     private void signup(String name, String pass, String mail) {
+
         mAPIServices = APIUtils.getAPIService();
         mAPIServices.Signup(new Signup(name, pass, mail)).enqueue(new Callback<SignupResult>() {
             @Override
@@ -63,8 +76,13 @@ public class SignUpActivity extends AppCompatActivity {
                 assert response.body() != null;
                 if (response.body().isSuccess()) {
                     Toast.makeText(SignUpActivity.this, response.body().getSignupResult().toString(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                    finish();
+                    if (checkInternet()) {
+                        Toast.makeText(SignUpActivity.this, "Dang ki thanh cong", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "vui long kiem tra internet", Toast.LENGTH_SHORT).show();
+                    }
                     progressDialog.dismiss();
                 }
             }
