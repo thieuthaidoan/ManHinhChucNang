@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SkillActivity"></activity>
-        <activity android:name="com.example.slide.ScreenSlideAcivity" />
+        <activity android:name="com.example.slide.ScreenSlideActivity" />
         <activity android:name=".CategoryActivity" />
         <activity
             android:name=".SplashActivity"

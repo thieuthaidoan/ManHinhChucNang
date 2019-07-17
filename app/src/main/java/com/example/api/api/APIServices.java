@@ -20,7 +20,7 @@ import retrofit2.http.POST;
 
 
         @POST("register")
-        Call<SignupResult> Signup(
+        Call<SignupResult> SignUp(
                 @Body Signup signUp
         );
         @GET("info")
@@ -28,7 +28,7 @@ import retrofit2.http.POST;
 
 
         @POST("login")
-        Call<LoginResult> login(
+        Call<LoginResult> LogIn(
                 @Body Login logIn
         );
 

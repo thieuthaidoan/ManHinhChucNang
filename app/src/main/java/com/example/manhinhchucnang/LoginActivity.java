@@ -92,9 +92,10 @@ public class LoginActivity extends AppCompatActivity {
     private void login(String username, String pass){
 
         mAPIServices = APIUtils.getAPIService();
-        mAPIServices.login(new Login(username, pass)).enqueue(new Callback<LoginResult>() {
+        mAPIServices.LogIn(new Login(username, pass)).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+                Log.d(String.valueOf(response.body().isSuccess()), "day la cai gi do");
                 if (response.body().isSuccess()){
                     Log.d("dang nhap thanh cong",toString());
                     Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();

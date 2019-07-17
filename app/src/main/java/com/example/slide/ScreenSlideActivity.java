@@ -14,7 +14,7 @@ import android.widget.Button;
 
 import com.example.manhinhchucnang.R;
 
-public class ScreenSlideAcivity extends FragmentActivity {
+public class ScreenSlideActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -34,7 +34,7 @@ public class ScreenSlideAcivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_slide);
+        setContentView(R.layout.activity_slider);
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);

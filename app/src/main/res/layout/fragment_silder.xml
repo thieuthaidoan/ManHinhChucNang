@@ -1,18 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfac1"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:orientation="vertical">
@@ -51,52 +52,66 @@
                 android:layout_gravity="center"
                 android:visibility="visible" />
 
-            <RadioGroup
-                android:id="@+id/radGroup"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp">
+                android:layout_height="match_parent">
 
-                <RadioButton
-                    android:id="@+id/radA"
+                <RadioGroup
+                    android:id="@+id/radGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 1" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingLeft="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/radB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 2" />
+                    <RadioButton
+                        android:id="@+id/radA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Trả lời 1"
+                        android:textColor="#1502c7"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/radC"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 3" />
+                    <RadioButton
+                        android:id="@+id/radB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Trả lời 2"
+                        android:textColor="#1502c7"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/radD"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:textSize="16sp"
-                    android:textColor="#1502c7"
-                    android:textStyle="bold"
-                    android:text="Trả lời 4" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Trả lời 3"
+                        android:textColor="#1502c7"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/radD"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="Trả lời 4"
+                        android:textColor="#1502c7"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -70,12 +70,12 @@ public class SignUpActivity extends AppCompatActivity {
     private void signup(String name, String pass, String mail) {
 
         mAPIServices = APIUtils.getAPIService();
-        mAPIServices.Signup(new Signup(name, pass, mail)).enqueue(new Callback<SignupResult>() {
+        mAPIServices.SignUp(new Signup(name, pass, mail)).enqueue(new Callback<SignupResult>() {
             @Override
             public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
                 assert response.body() != null;
                 if (response.body().isSuccess()) {
-                    Toast.makeText(SignUpActivity.this, response.body().getSignupResult().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, response.body().getSignupResponse().toString(), Toast.LENGTH_SHORT).show();
                     if (checkInternet()) {
                         Toast.makeText(SignUpActivity.this, "Dang ki thanh cong", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
