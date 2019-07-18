@@ -10,14 +10,14 @@ public class Signup  {
     @SerializedName("password")
     @Expose
     private String password;
-    @SerializedName("fullName")
-    @Expose
-    private String fullName;
+//    @SerializedName("fullName")
+//    @Expose
+//    private String fullName;
 
-    public Signup(String username, String pass, String email) {
+    public Signup(String pass, String email) {
         this.email = email;
         this.password = pass;
-        this.fullName = username;
+//        this.fullName = username;
     }
 
     public String getEmail() {
@@ -36,11 +36,11 @@ public class Signup  {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
+//    public String getFullName() {
+//        return fullName;
+//    }
+//
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
 }

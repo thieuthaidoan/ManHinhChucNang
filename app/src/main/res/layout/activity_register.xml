@@ -43,7 +43,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/duongvien_goctron"
         android:ems="10"
-        android:text="pistol"
+        android:text="cityslicka"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp" />
@@ -62,7 +62,7 @@
         android:background="@drawable/duongvien_goctron"
         android:ems="10"
         android:hint="Re-Password"
-        android:text="pistol"
+        android:text="cityslicka"
         android:inputType="textPassword"
         android:padding="10dp" />
 

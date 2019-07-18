@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="ClickListener"
+            type="com.example.DataBinding.Listener" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-   >
+    android:background="@color/colorAccent">
 
     <ImageView
         android:id="@+id/imageView8"
@@ -56,7 +63,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:text="pistol" />
+        android:text="cityslicka" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -85,8 +92,8 @@
             android:paddingBottom="6dp"
             android:text="Login"
             android:textColor="@android:color/background_dark"
-            android:textSize="20sp"
-          />
+            android:textSize="20sp" />
+
         <TextView
             android:id="@+id/tv_signup"
             android:layout_width="0dp"
@@ -134,3 +141,4 @@
 
 
 </RelativeLayout>
+</layout>

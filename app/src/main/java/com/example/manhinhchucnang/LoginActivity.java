@@ -3,25 +3,20 @@ package com.example.manhinhchucnang;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.SQLite.SQLiteDB;
 import com.example.api.api.APIServices;
 import com.example.api.api.APIUtils;
-import com.example.api.api.response.BaseResponse;
-import com.example.api.api.response.LoginResponse;
 import com.example.api.api.results.LoginResult;
 import com.example.model.Login;
-
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -95,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         mAPIServices.LogIn(new Login(username, pass)).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                Log.d(String.valueOf(response.body().isSuccess()), "day la cai gi do");
                 if (response.body().isSuccess()){
                     Log.d("dang nhap thanh cong",toString());
                     Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();

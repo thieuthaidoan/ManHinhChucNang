@@ -9,7 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLiteDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "TestingDB";
+    private static String DB_NAME = "dbtracnghiem.sqlite";
+    private static final String DATABASE_NAME = "Testing.db";
     private static final String TABLE_NAME = "Testing";
 
     public static final String KEY_TOKEN = "token";
@@ -23,9 +24,7 @@ public class SQLiteDB extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME
                 + " (" + KEY_TOKEN + " TEXT)";
-
         sqLiteDatabase.execSQL(CREATE_TABLE);
-
         ContentValues values = new ContentValues();
         values.put(KEY_TOKEN, "");
         sqLiteDatabase.insert(TABLE_NAME, null, values);

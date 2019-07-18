@@ -3,11 +3,8 @@ package com.example.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.BaseAdapter;
 
-import com.example.manhinhchucnang.R;
 import com.example.model.Category;
 
 import java.util.List;
@@ -17,7 +14,7 @@ public class CategoryAdapter extends BaseAdapter {
     int layout;
 
     public CategoryAdapter(Context context, int layout
-//            , List<Category> danhsachanh
+            , List<Category> danhsachanh
     ) {
         this.context = context;
         this.layout = layout;

@@ -44,17 +44,18 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btn_signup_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (passWord.getText().toString() == rePassword.getText().toString()) {
+//                if (passWord.getText().toString() == rePassword.getText().toString()) {
                 progressDialog = new ProgressDialog(SignUpActivity.this);
                 //  progressDialog.setTitle("Vui Lòng Chờ !");
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
-                signup(fullName.getText().toString(), passWord.getText().toString(), tvEmail.getText().toString());
-                } else {
-                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
+                signup(fullName.getText().toString(), passWord.getText().toString());
                 }
-            }
+//                else {
+//                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
         });
     }
 
@@ -67,12 +68,14 @@ public class SignUpActivity extends AppCompatActivity {
         } else
             return false;
     }
-    private void signup(String name, String pass, String mail) {
+
+    private void signup(String name, String pass) {
 
         mAPIServices = APIUtils.getAPIService();
-        mAPIServices.SignUp(new Signup(name, pass, mail)).enqueue(new Callback<SignupResult>() {
+        mAPIServices.SignUp(new Signup(name, pass)).enqueue(new Callback<SignupResult>() {
             @Override
             public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
+
                 assert response.body() != null;
                 if (response.body().isSuccess()) {
                     Toast.makeText(SignUpActivity.this, response.body().getSignupResponse().toString(), Toast.LENGTH_SHORT).show();

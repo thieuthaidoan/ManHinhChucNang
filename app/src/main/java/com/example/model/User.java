@@ -4,15 +4,13 @@ public class User {
 
     private int id;
 
-    public int getId() {
+    private int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
-
-    private String email;
 
     public String getEmail() {
         return email;
@@ -22,14 +20,18 @@ public class User {
         this.email = email;
     }
 
-    public String getToken() {
-        return token;
+    public String getName() {
+        return name;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    private String token;
+    private String email;
+
+
+    private String name;
+
 
 }
