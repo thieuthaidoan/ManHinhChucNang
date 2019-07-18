@@ -1,7 +1,5 @@
 package com.example.manhinhchucnang;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.SQLite.SQLiteDB;
 import com.example.api.api.APIServices;
 import com.example.slide.ScreenSlideActivity;
-import com.example.slide.ScreenSlidePageFragment;
 
 
 public class MainActivity extends AppCompatActivity {

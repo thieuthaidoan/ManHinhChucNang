@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void anhxa() {
-        fullName = (EditText) findViewById(R.id.name_register);
+//        fullName = (EditText) findViewById(R.id.name_register);
         tvEmail = (EditText) findViewById(R.id.email_register);
         passWord = (EditText) findViewById(R.id.pass_register);
         rePassword = (EditText) findViewById(R.id.re_pass_register);
@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
-                signup(fullName.getText().toString(), passWord.getText().toString());
+                signup(tvEmail.getText().toString(), passWord.getText().toString());
                 }
 //                else {
 //                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
@@ -75,8 +75,6 @@ public class SignUpActivity extends AppCompatActivity {
         mAPIServices.SignUp(new Signup(name, pass)).enqueue(new Callback<SignupResult>() {
             @Override
             public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
-
-                assert response.body() != null;
                 if (response.body().isSuccess()) {
                     Toast.makeText(SignUpActivity.this, response.body().getSignupResponse().toString(), Toast.LENGTH_SHORT).show();
                     if (checkInternet()) {

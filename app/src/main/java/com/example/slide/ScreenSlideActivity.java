@@ -1,6 +1,10 @@
 package com.example.slide;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,13 +12,14 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
 import com.example.manhinhchucnang.R;
 
 public class ScreenSlideActivity extends FragmentActivity {
+    private TextView countdownText;
+    private CountDownTimer countDownTimer;
+    private long timeLeftMillisecond = 4500000;
+    private boolean timeRunning;
+
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -35,12 +40,55 @@ public class ScreenSlideActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slider);
-
+        countdownText = findViewById(R.id.tvTimer);
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
+        Counting();
+    }
+
+    public void Counting() {
+        if (timeRunning)
+            stopTimer();
+        else
+            startTimer();
+    }
+
+    public void startTimer() {
+
+        countDownTimer = new CountDownTimer(timeLeftMillisecond, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftMillisecond = l;
+                updateTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+        timeRunning = true;
+    }
+
+    public void stopTimer() {
+        countDownTimer.cancel();
+        timeRunning = false;
+    }
+
+    public void updateTimer() {
+        int minutes = (int) timeLeftMillisecond / 60000;
+        int seconds = (int) timeLeftMillisecond % 60000 / 1000;
+        String timeLeft;
+        timeLeft = "" + minutes + ":";
+        if (minutes == 0 && seconds == 0) {
+            stopTimer();
+        } else if (seconds < 10) timeLeft += "0";
+        timeLeft += seconds;
+        countdownText.setText(timeLeft);
     }
 
     @Override
