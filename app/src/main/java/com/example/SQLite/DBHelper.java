@@ -5,7 +5,9 @@ package com.example.SQLite;
  */
 
 import android.annotation.TargetApi;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -20,12 +22,16 @@ import java.sql.SQLException;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    private static String DB_PATH = "/data/data/com.example.nguyentuan.tracnghiem1.question/databases/";
+    private static String DB_PATH = "/data/data/com.example.SQLite/databases/";
     private static String DB_NAME = "dbtracnghiem.sqlite";
     private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_NAME = "Testing";
 
+
+    public static final String KEY_TOKEN = "token";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
+    private DBHelper dbHelper;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
@@ -40,7 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.N_MR1)
     public void deleteDataBase() {
         String myPath = DB_PATH + DB_NAME;
         SQLiteDatabase.deleteDatabase(new File(myPath));
@@ -115,12 +121,51 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME
+                + " (" + KEY_TOKEN + " TEXT)";
+        db.execSQL(CREATE_TABLE);
+        ContentValues values = new ContentValues();
+        values.put(KEY_TOKEN, "");
+        db.insert(TABLE_NAME, null, values);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        this.onCreate(db);
 
+    }
+
+    public String getToken() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_TOKEN}, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        return cursor.getString(cursor.getColumnIndex(KEY_TOKEN));
+    }
+
+    //    public ArrayList<Question> getQuestion(int num_exam, String skill){
+//        ArrayList<Question> ls = new ArrayList<Question>();
+//        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+//        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM tracnghiem Where num_exam ='" + num_exam+ "AND skill = '"+skill + "'",null);
+//        cursor.moveToFirst();
+//        do {
+//            Question item;
+//            item = new Question(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)
+//                    , cursor.getInt(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10));
+//            ls.add(item);
+//        }while (cursor.moveToNext());
+//        return ls;
+//
+//    }
+    public void save(String key, String value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(key, value);
+        db.update(TABLE_NAME, values, null, null);
+        db.close();
     }
 }
 

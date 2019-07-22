@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void anhxa() {
-//        fullName = (EditText) findViewById(R.id.name_register);
+        fullName = (EditText) findViewById(R.id.name_register);
         tvEmail = (EditText) findViewById(R.id.email_register);
         passWord = (EditText) findViewById(R.id.pass_register);
         rePassword = (EditText) findViewById(R.id.re_pass_register);
@@ -50,7 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
-                signup(tvEmail.getText().toString(), passWord.getText().toString());
+                signup(tvEmail.getText().toString(), fullName.getText().toString(), passWord.getText().toString());
                 }
 //                else {
 //                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
@@ -69,13 +69,13 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
     }
 
-    private void signup(String name, String pass) {
+    private void signup(String name, String email, String pass) {
 
         mAPIServices = APIUtils.getAPIService();
         mAPIServices.SignUp(new Signup(name, pass)).enqueue(new Callback<SignupResult>() {
             @Override
             public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
-                if (response.body().isSuccess()) {
+                if (response.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, response.body().getSignupResponse().toString(), Toast.LENGTH_SHORT).show();
                     if (checkInternet()) {
                         Toast.makeText(SignUpActivity.this, "Dang ki thanh cong", Toast.LENGTH_SHORT).show();

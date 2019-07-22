@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     private APIServices mAPIServices;
     private static String token;
     TextView tv;
+    private static final String TAG = LoginActivity.class.getSimpleName();
+
+
+
 
 
     @Override
@@ -60,28 +63,25 @@ public class LoginActivity extends AppCompatActivity {
             }).start();
 
         });
-        findViewById(R.id.tv_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        findViewById(R.id.tv_login).setOnClickListener(view -> {
 
-                progressDialog = new ProgressDialog(LoginActivity.this);
-                //  progressDialog.setTitle("Vui Lòng Chờ !");
-                progressDialog.setMessage("Loading...");
-                progressDialog.setIndeterminate(false);
-                progressDialog.show();
-                new Thread(new Runnable() {
-                            public void run() {
-                                try {
-                            login(userName.getText().toString(), passWord.getText().toString());
+            progressDialog = new ProgressDialog(LoginActivity.this);
+            //  progressDialog.setTitle("Vui Lòng Chờ !");
+            progressDialog.setMessage("Loading...");
+            progressDialog.setIndeterminate(false);
+            progressDialog.show();
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        login(userName.getText().toString(), passWord.getText().toString());
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        progressDialog.dismiss();
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                }).start();
+                    progressDialog.dismiss();
+                }
+            }).start();
 
-            }
         });
     }
     private void login(String username, String pass){
@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         mAPIServices.LogIn(new Login(username, pass)).enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
-                if (response.body().isSuccess()){
+                if (response.isSuccessful()) {
                     Log.d("dang nhap thanh cong",toString());
                     Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                     SQLiteDB db = new SQLiteDB(LoginActivity.this);

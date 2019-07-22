@@ -2,12 +2,12 @@ package com.example.slide;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.manhinhchucnang.R;
 
@@ -15,6 +15,7 @@ import com.example.manhinhchucnang.R;
  * A simple {@link Fragment} subclass.
  */
 public class ScreenSlidePageFragment extends Fragment {
+    private PagerAdapter pagerAdapter;
 
 
     public ScreenSlidePageFragment() {

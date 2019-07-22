@@ -12,7 +12,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.adapter.QuestionAdapter;
 import com.example.manhinhchucnang.R;
+import com.example.model.Question;
+
+import java.util.ArrayList;
 
 public class ScreenSlideActivity extends FragmentActivity {
     private TextView countdownText;
@@ -20,11 +24,13 @@ public class ScreenSlideActivity extends FragmentActivity {
     private long timeLeftMillisecond = 4500000;
     private boolean timeRunning;
 
+
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
-
+    private static final int NUM_PAGES = 10;
+    public static ScreenSlidePageFragment sc = ScreenSlidePageFragment.newInstance(NUM_PAGES);
+    ;
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
@@ -35,6 +41,8 @@ public class ScreenSlideActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter pagerAdapter;
+    QuestionAdapter getquestion;
+    ArrayList<Question> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,9 @@ public class ScreenSlideActivity extends FragmentActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
+        arrayList = new ArrayList<Question>();
+        arrayList = getquestion.getQuestion(1, "");
+
         Counting();
     }
 

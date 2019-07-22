@@ -9,7 +9,8 @@ public class BaseResponse {
     @SerializedName("success")
     @Expose
     private boolean success;
-    public boolean isSuccess() {
+
+    public boolean isSuccessful() {
         return success;
     }
 }
