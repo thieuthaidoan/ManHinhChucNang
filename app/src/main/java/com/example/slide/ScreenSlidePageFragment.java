@@ -39,4 +39,31 @@ public class ScreenSlidePageFragment extends Fragment {
         return rootView;
     }
 
+    private String getChoiceFromID(int ID) {
+        if (ID == R.id.radA) {
+            return "A";
+        } else if (ID == R.id.radB) {
+            return "B";
+        } else if (ID == R.id.radC) {
+            return "C";
+        } else if (ID == R.id.radD) {
+            return "D";
+        } else return "";
+    }
+
+    //check right ans
+//    private void getCheckAns(String ans){
+//        if(ans.equals("A")==true){
+//            radA.setBackgroundColor(Color.RED);
+//        }
+//        else if(ans.equals("B")==true){
+//            radB.setBackgroundColor(Color.RED);
+//        }else if(ans.equals("C")==true){
+//            radC.setBackgroundColor(Color.RED);
+//        }else if(ans.equals("D")==true){
+//            radD.setBackgroundColor(Color.RED);
+//        }else ;
+//    }
+
+
 }

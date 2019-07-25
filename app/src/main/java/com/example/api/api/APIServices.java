@@ -1,7 +1,7 @@
 package com.example.api.api;
 
+import com.example.api.api.response.LoginResponse;
 import com.example.api.api.results.GetCategoryResults;
-import com.example.api.api.results.LoginResult;
 import com.example.api.api.results.SignupResult;
 import com.example.model.Login;
 import com.example.model.Signup;
@@ -26,7 +26,7 @@ import retrofit2.http.POST;
 
 
         @POST("login")
-        Call<LoginResult> LogIn(
+        Call<LoginResponse> LogIn(
                 @Body Login logIn
         );
 

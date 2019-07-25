@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class BaseResponse {
 
-    @SerializedName("success")
+    @SerializedName("200")
     @Expose
     private boolean success;
 
-    public boolean isSuccessful() {
+    public boolean isSuccess() {
         return success;
     }
 }

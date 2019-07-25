@@ -10,22 +10,22 @@ public class Login implements Serializable {
 
     @SerializedName("email")
     @Expose
-    private String user;
+    private String email;
     @SerializedName("password")
     @Expose
     private String password;
 
-    public Login(String username, String pass) {
-        this.user = username;
+    public Login(String email, String pass) {
+        this.email = email;
         this.password = pass;
     }
 
     public String getEmail() {
-        return user;
+        return email;
     }
 
     public void setEmail(String email) {
-        this.user = email;
+        this.email = email;
     }
 
     public String getPassword() {

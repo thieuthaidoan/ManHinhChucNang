@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "93898957845",
+    "firebase_url": "https://tracnghiem-14e4c.firebaseio.com",
+    "project_id": "tracnghiem-14e4c",
+    "storage_bucket": "tracnghiem-14e4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93898957845:android:652fc02b4047cb31",
+        "android_client_info": {
+          "package_name": "com.example.manhinhchucnang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93898957845-qr2khv427n7qpri4cqabr3flahaun3kn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxn5IuDFyZe-XY1i9WD1Pn5JJAMDriUFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93898957845-qr2khv427n7qpri4cqabr3flahaun3kn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

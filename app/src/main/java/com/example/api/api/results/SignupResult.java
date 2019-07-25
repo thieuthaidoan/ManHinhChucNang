@@ -1,11 +1,10 @@
 package com.example.api.api.results;
 
-import com.example.api.api.response.BaseResponse;
 import com.example.api.api.response.SignupResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SignupResult extends BaseResponse {
+public class SignupResult {
     @SerializedName("results")
     @Expose
 

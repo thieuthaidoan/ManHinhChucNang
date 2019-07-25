@@ -50,7 +50,9 @@ public class SignUpActivity extends AppCompatActivity {
                 progressDialog.setMessage("Loading...");
                 progressDialog.setIndeterminate(false);
                 progressDialog.show();
-                signup(tvEmail.getText().toString(), fullName.getText().toString(), passWord.getText().toString());
+                signup(tvEmail.getText().toString()
+//                        , fullName.getText().toString()
+                        , passWord.getText().toString());
                 }
 //                else {
 //                    Toast.makeText(SignUpActivity.this, "re-pass wrong!", Toast.LENGTH_SHORT).show();
@@ -69,21 +71,23 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
     }
 
-    private void signup(String name, String email, String pass) {
+    private void signup(
+//            String name,
+            String email, String pass) {
 
         mAPIServices = APIUtils.getAPIService();
-        mAPIServices.SignUp(new Signup(name, pass)).enqueue(new Callback<SignupResult>() {
+        mAPIServices.SignUp(new Signup(email, pass)).enqueue(new Callback<SignupResult>() {
             @Override
             public void onResponse(Call<SignupResult> call, Response<SignupResult> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, response.body().getSignupResponse().toString(), Toast.LENGTH_SHORT).show();
-                    if (checkInternet()) {
+//                    if (checkInternet()) {
                         Toast.makeText(SignUpActivity.this, "Dang ki thanh cong", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                         finish();
-                    } else {
-                        Toast.makeText(SignUpActivity.this, "vui long kiem tra internet", Toast.LENGTH_SHORT).show();
-                    }
+//                    } else {
+//                        Toast.makeText(SignUpActivity.this, "vui long kiem tra internet", Toast.LENGTH_SHORT).show();
+//                    }
                     progressDialog.dismiss();
                 }
             }

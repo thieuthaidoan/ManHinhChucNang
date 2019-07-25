@@ -8,6 +8,7 @@ public class SignupResponse {
     @Expose
     private String id;
 
+
     @SerializedName("email")
     @Expose
     private String email;

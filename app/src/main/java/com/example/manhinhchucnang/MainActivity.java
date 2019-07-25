@@ -3,7 +3,6 @@ package com.example.manhinhchucnang;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -30,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addEvents();
-//        loadCategory();
-//       ScreenSlidePageFragment.newInstance();
+        db = new SQLiteDB(this);
+        db.getReadableDatabase();
+
+//       ScreenSlidePageFragment.newInstance(ScreenSlidePageFragment.getArguments().getInt("someInt", 0));
     }
 
     //    private void loadCategory() {
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        progressDialog.setMessage("Loading...");
 //        progressDialog.setIndeterminate(false);
 //        progressDialog.show();
-//        db = new SQLiteDB(this);
+
 //        token = db.getToken();
 //        mAPIService = APIUtils.getAPIService();
 //        mAPIService.getCategories(token).enqueue(new Callback<GetCategoryResults>() {
@@ -72,20 +73,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         {
             final Button bt = findViewById(R.id.login);
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            bt.setOnClickListener(view -> {
+//                if (session.isLoggedIn()) {
+//                    bt.setText("Logout");
+//                    Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                    {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
-                }
             });
             final Button bt1 = findViewById(R.id.bt_skill_1);
-            bt1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
-                    startActivity(intent2);
-                }
+            bt1.setOnClickListener(view -> {
+                Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
+                startActivity(intent2);
             });
         }
     }
