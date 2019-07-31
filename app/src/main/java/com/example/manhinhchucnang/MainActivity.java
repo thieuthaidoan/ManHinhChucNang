@@ -10,7 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.SQLite.SQLiteDB;
 import com.example.api.api.APIServices;
+import com.example.model.Question;
 import com.example.slide.ScreenSlideActivity;
+import com.example.slide.ScreenSlidePageFragment;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
     GridView gridView;
     String token;
     private APIServices mAPIService;
+
+    private List<Question> questionsSkill1 = new ArrayList<Question>();
+    private List<Question> questionsSkill2 = new ArrayList<Question>();
+    private List<Question> questionsSkill3 = new ArrayList<Question>();
+    private List<Question> questionsSkill4 = new ArrayList<Question>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +42,28 @@ public class MainActivity extends AppCompatActivity {
         addEvents();
         db = new SQLiteDB(this);
         db.getReadableDatabase();
+        // Load toan bo cau hoi thong qua API
+        Question ques = new Question();
+        ques.set_id(1);
+        ques.setAns_a("abc1");
+        ques.setAns_b("abc2");
+        ques.setAns_c("abc3");
+        ques.setAns_d("abc4");
+        ques.setSkill(1);
+        Question[] resultFromAPI = {ques};
 
-//       ScreenSlidePageFragment.newInstance(ScreenSlidePageFragment.getArguments().getInt("someInt", 0));
+        for (int i = 0; i < resultFromAPI.length; i++) {
+            if (resultFromAPI[i].getSkill() == 1) {
+                questionsSkill1.add(resultFromAPI[i]);
+            } else if (resultFromAPI[i].getSkill() == 2) {
+                questionsSkill2.add(resultFromAPI[i]);
+            } else if (resultFromAPI[i].getSkill() == 3) {
+                questionsSkill3.add(resultFromAPI[i]);
+            } else {
+                questionsSkill4.add(resultFromAPI[i]);
+            }
+        }
+
     }
 
     //    private void loadCategory() {
@@ -85,9 +116,36 @@ public class MainActivity extends AppCompatActivity {
             });
             final Button bt1 = findViewById(R.id.bt_skill_1);
             bt1.setOnClickListener(view -> {
+
                 Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
+
+                String json = new Gson().toJson(questionsSkill1);
+                ScreenSlidePageFragment.newInstance(json);
+                intent2.putExtra("listQuestion", json);
                 startActivity(intent2);
             });
+            final Button bt2 = findViewById(R.id.bt_skill_2);
+            bt2.setOnClickListener(view -> {
+                Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("listQuestion", new Gson().toJson(questionsSkill2));
+                startActivity(intent2);
+            });
+            final Button bt3 = findViewById(R.id.bt_skill_3);
+            bt3.setOnClickListener(view -> {
+                Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
+                Bundle extras = intent2.getExtras();
+                extras.putString("listQuestion", new Gson().toJson(questionsSkill3));
+                startActivity(intent2);
+            });
+            final Button bt4 = findViewById(R.id.bt_skill_4);
+            bt4.setOnClickListener(view -> {
+                Intent intent2 = new Intent(MainActivity.this, ScreenSlideActivity.class);
+                Bundle extras = intent2.getExtras();
+                extras.putString("listQuestion", new Gson().toJson(questionsSkill4));
+                startActivity(intent2);
+            });
+
         }
     }
 }

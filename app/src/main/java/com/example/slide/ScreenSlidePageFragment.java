@@ -22,10 +22,10 @@ public class ScreenSlidePageFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ScreenSlidePageFragment newInstance(int args) {
+    public static ScreenSlidePageFragment newInstance(String args) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle param = new Bundle();
-        param.putSerializable("ANSWER", args);
+        param.putString("ANSWER", args);
         fragment.setArguments(param);
         return fragment;
     }

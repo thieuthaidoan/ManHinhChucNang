@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class Question {
-    public Question(int _id, String question, String ans_a, String ans_b, String ans_c, String ans_d, int num_exam, String skill, String result, String image, String audio) {
+    public Question(int _id, String question, String ans_a, String ans_b, String ans_c, String ans_d, int num_exam, int skill, String result, String image, String audio) {
         this._id = _id;
         this.question = question;
         this.ans_a = ans_a;
@@ -25,7 +25,7 @@ public class Question {
     private String result;
     private String image;
     private int num_exam;
-    private String skill;
+    private int skill;
     private String audio;
     public Question() {
 
@@ -103,11 +103,11 @@ public class Question {
         this.num_exam = num_skill;
     }
 
-    public String getSkill() {
+    public int getSkill() {
         return skill;
     }
 
-    public void setSkill(String skill) {
+    public void setSkill(int skill) {
         this.skill = skill;
     }
 

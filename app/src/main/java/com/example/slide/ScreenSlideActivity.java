@@ -12,11 +12,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.adapter.QuestionAdapter;
 import com.example.manhinhchucnang.R;
 import com.example.model.Question;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScreenSlideActivity extends FragmentActivity {
     private TextView countdownText;
@@ -24,11 +25,6 @@ public class ScreenSlideActivity extends FragmentActivity {
     private long timeLeftMillisecond = 4500000;
     private boolean timeRunning;
 
-
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    public static int NUM_PAGES = 5;
     ;
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -40,8 +36,10 @@ public class ScreenSlideActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter pagerAdapter;
-    QuestionAdapter getquestion;
-    ArrayList<Question> arrayList;
+//    QuestionAdapter getquestion;
+//    ArrayList<Question> arrayList;
+
+    private List<Question> questions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +51,21 @@ public class ScreenSlideActivity extends FragmentActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
         mPager.setPageTransformer(true, new DepthPageTransformer());
-        arrayList = new ArrayList<Question>();
-        arrayList = getquestion.getQuestion(1, "");
+//        arrayList = new ArrayList<Question>();
+//        arrayList = getquestion.getQuestion(1, "");
 
         Counting();
+
+        List<Question> questions = new ArrayList<Question>();
+        Bundle extras = getIntent().getExtras();
+        String jsonMyObject = "";
+        if (extras != null) {
+            jsonMyObject = extras.getString("listQuestion");
+        }
+        questions = new Gson().fromJson(jsonMyObject, List.class);
+
+        System.out.println(questions.get(0).get_id() + "  " + questions.get(0).getAns_a());
+
     }
 
     public void Counting() {
@@ -129,7 +138,7 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return questions.size();
         }
     }
 
